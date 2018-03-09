@@ -39,8 +39,8 @@ Basic authentication scheme is implemneted here . For future scope, OAuth can be
     ![homepage](https://user-images.githubusercontent.com/35917175/37206830-384605fe-23c0-11e8-8629-4032a24a7a32.png)
     
 4. First controller click after logged in as authorized user . 
-  ![client_authorized](https://user-images.githubusercontent.com/35917175/37206829-3815d4ce-23c0-11e8-9a50-7e18a50e8318.png)
-
+ ![auth_client](https://user-images.githubusercontent.com/35917175/37206967-c6dd6942-23c0-11e8-92c7-dc0a7d8a9f5f.png)
+ 
 5. First controller click after logged in as un-authorized user . 
 ![not_client_access_denied](https://user-images.githubusercontent.com/35917175/37206832-38c33222-23c0-11e8-8fbb-5461adfa4b27.png)
 
