@@ -6,6 +6,6 @@ class ClientController {
 
     @Secured(['ROLE_CLIENT'])
     def index() {
-        render 'Welcome to your bank'
+        render 'Welcome to your Client Page'
     }
 }
