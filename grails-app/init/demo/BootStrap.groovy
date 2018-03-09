@@ -5,7 +5,7 @@ import grails.compiler.GrailsCompileStatic
 @GrailsCompileStatic
 class BootStrap {
 
-    static Map<String, String> BANKCARD =
+    static Map<String, String> MATRIX_FOR_TWO_FACTOR_AUTH =
             ['A1': '10', 'A2': '84', 'A3': '93', 'A4': '12', 'A5': '92',
              'A6': '58', 'A7': '38', 'A8': '28', 'A9': '36', 'A10': '02',
              'B1': '99', 'B2': '29', 'B3': '10', 'B4': '23', 'B5': '33',
@@ -25,7 +25,7 @@ class BootStrap {
         }
         if ( !User.findByUsername('sherlock') ) {
             def u = new User(username: 'sherlock', password: 'elementary')
-            BANKCARD.each { k, v ->
+            MATRIX_FOR_TWO_FACTOR_AUTH.each { k, v ->
                 u.addToCoordinates(new SecurityCoordinate(position: k, value: v, user: u))
             }
             u.save()
@@ -34,7 +34,7 @@ class BootStrap {
         }
         if ( !User.findByUsername('user') ) {
             def u = new User(username: 'user', password: 'user')
-            BANKCARD.each { k, v ->
+            MATRIX_FOR_TWO_FACTOR_AUTH.each { k, v ->
                 u.addToCoordinates(new SecurityCoordinate(position: k, value: v, user: u))
             }
             u.save()
