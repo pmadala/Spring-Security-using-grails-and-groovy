@@ -1,5 +1,7 @@
 package demo
 
+import org.grails.web.util.WebUtils
+import javax.servlet.http.HttpServletRequest
 import grails.config.Config
 import grails.core.support.GrailsConfigurationAware
 
@@ -7,8 +9,14 @@ class LoginController extends grails.plugin.springsecurity.LoginController imple
 
     List<String> coordinatePositions
 
+
     def auth() {
 
+		String url = getCurrentUrl(request);
+		log.println url;
+		log.println request.getRequestURL();
+		log.println request.getAttribute("username");
+		log.println request.getAttribute("password");
         def conf = getConf()
 
         if (springSecurityService.isLoggedIn()) {
@@ -33,4 +41,16 @@ class LoginController extends grails.plugin.springsecurity.LoginController imple
         coordinatePositions = co.getProperty('security.coordinate.positions', List, []) as List<String>
 
     }
+    
+    static String getCurrentUrl(HttpServletRequest request){
+
+	    StringBuilder sb = new StringBuilder()
+	    sb << request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+	    sb << request.getAttribute("javax.servlet.forward.request_uri")
+	    if(request.getAttribute("javax.servlet.forward.query_string")){
+	        sb << "?"
+	        sb << request.getAttribute("javax.servlet.forward.query_string")
+	    }
+	    return sb.toString();
+	}
 }

@@ -17,7 +17,7 @@ class BootStrap {
             ]
 
     def init = { servletContext ->
-        def authorities = ['ROLE_CLIENT','ROLE_NOT_CLIENT']
+        def authorities = ['ROLE_CLIENT','ROLE_NOT_CLIENT','ROLE_JSON']
         authorities.each {
             if ( !Role.findByAuthority(it) ) {
                 new Role(authority: it).save()

@@ -1,18 +1,39 @@
 import demo.CoordinateValidatorService
 import demo.TwoFactorAuthenticationDetailsSource
 import demo.TwoFactorAuthenticationProvider
+import demo.MyUserDetailsService
+//import demo.MyAuthenticationFilter
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy
 
 // Place your Spring DSL code here
 beans = {
 
     // tag::authenticationDetailsSource[]
-    authenticationDetailsSource(TwoFactorAuthenticationDetailsSource)
+    //authenticationDetailsSource(TwoFactorAuthenticationDetailsSource)
     // end::authenticationDetailsSource[]
 
     // tag::coordinateValidatorBeanDefinition[]
     coordinateValidator(CoordinateValidatorService)
     // end::coordinateValidatorBeanDefinition[]
+    
+    
+    // tag::userDetailsService[]
+   	userDetailsService(MyUserDetailsService)
+	// end::userDetailsService[]
+	
+	
+	/*myAuthenticationFilter(MyAuthenticationFilter){
+	    authenticationManager = ref('authenticationManager')
+	    sessionAuthenticationStrategy = ref('sessionAuthenticationStrategy')
+	    authenticationSuccessHandler = ref('authenticationSuccessHandler')
+	    authenticationFailureHandler = ref('authenticationFailureHandler')
+	    rememberMeServices = ref('rememberMeServices')
+	    authenticationDetailsSource = ref('authenticationDetailsSource')
+	    filterProcessesUrl = '/login/auth'
+	}*/
+	
+	
 
     // tag::twoFactorAuthenticationProviderBeanDefinition[]
     twoFactorAuthenticationProvider(TwoFactorAuthenticationProvider) {
