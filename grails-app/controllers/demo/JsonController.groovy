@@ -19,10 +19,14 @@ class JsonController {
        	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentPrincipalName = authentication.getName();
        	
-       	session["user"] = currentPrincipalName;
        	
-       	def aStudent = session["user"]
-       	def responseBody = "Added $aStudent to the session.\n";
+       	
+       	StringBuilder sb = new StringBuilder();
+       	sb.append(springSecurityService.currentUser.password+ "<br/>");
+       	sb.append(springSecurityService.currentUser.id+ "<br/>");
+       	
+       	def responseBody = "Added $currentPrincipalName to the session.<br/>";
+       	responseBody = responseBody + sb.toString();
     	render responseBody
     }
 }

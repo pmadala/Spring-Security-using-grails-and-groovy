@@ -9,11 +9,17 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
+import grails.plugins.rest.client.RestBuilder;
+import grails.plugins.rest.client.RestResponse;
+import api.AuthenticationService;
+import grails.converters.JSON
+import groovy.json.JsonSlurper
+import api.AuthResponse
 
 @CompileStatic
 class TwoFactorAuthenticationProvider extends DaoAuthenticationProvider {
 
-	
+	def hostname ="127.0.0.1:8080"
     CoordinateValidator coordinateValidator
 
     protected void additionalAuthenticationChecks(UserDetails userDetails,
@@ -22,10 +28,17 @@ class TwoFactorAuthenticationProvider extends DaoAuthenticationProvider {
             
         String username = userDetails.username;
         if ("user2".equalsIgnoreCase(username)) {
-        	def token = new UsernamePasswordAuthenticationToken(userDetails, userDetails.password, userDetails.authorities); 
-            token.details = authentication.details;  
-	        SecurityContextHolder.getContext().setAuthentication(token); 
-        	return;
+        
+        	Authentication token;
+        	String jsonTxt = AuthenticationService.remoteAuthentication(authentication);
+        	AuthResponse resp = new AuthResponse(new JsonSlurper().parseText(jsonTxt))
+        	def obj = resp.token;
+        	if ( (obj instanceof Authentication) ) {
+        		token =(Authentication) obj;
+        	} 
+        	
+			SecurityContextHolder.getContext().setAuthentication(token); 
+			return ;
         }
         
         super.additionalAuthenticationChecks(userDetails, authentication)

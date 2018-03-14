@@ -9,14 +9,9 @@ class LoginController extends grails.plugin.springsecurity.LoginController imple
 
     List<String> coordinatePositions
 
-
+	
     def auth() {
 
-		String url = getCurrentUrl(request);
-		log.println url;
-		log.println request.getRequestURL();
-		log.println request.getAttribute("username");
-		log.println request.getAttribute("password");
         def conf = getConf()
 
         if (springSecurityService.isLoggedIn()) {

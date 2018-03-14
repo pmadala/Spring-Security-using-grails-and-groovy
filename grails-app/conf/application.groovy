@@ -15,7 +15,14 @@ grails.plugin.springsecurity.providerNames = [
 //   'authenticationProcessingFilter', 'myAuthenticationFilter',
 //]
 
-
+/*grails.plugin.springsecurity.rest.token.validation.active=true
+grails.plugin.springsecurity.rest.token.validation.headerName='X-Auth-Token'
+grails.plugin.springsecurity.rest.token.validation.endpointUrl='/api/validate'
+grails.plugin.springsecurity.rest.login.useJsonCredentials=true
+grails.plugin.springsecurity.rest.login.usernamePropertyName='username'
+grails.plugin.springsecurity.rest.login.passwordPropertyName='password'
+grails.plugin.springsecurity.rest.logout.endpointUrl='/api/logout'
+grails.plugin.springsecurity.rest.token.validation.headerName='X-Auth-Token'*/
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'demo.User'
